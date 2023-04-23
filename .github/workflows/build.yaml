@@ -59,17 +59,17 @@ jobs:
       - name: Package for linux-musl
         if: matrix.target == 'x86_64-unknown-linux-musl'
         run: |
-          zip --junk-paths rc-${{ matrix.target }} target/${{ matrix.target }}/release/rc
+          zip --junk-paths rc-${{ matrix.target }} target/${{ matrix.target }}
 
       - name: Package for windows
         if: matrix.target == 'x86_64-pc-windows-msvc'
         run: |
-          powershell Compress-Archive -Path target/${{ matrix.target }}/release/rc.exe -DestinationPath rc-${{ matrix.target }}.zip
+          powershell Compress-Archive -Path target/${{ matrix.target }} -DestinationPath rc-${{ matrix.target }}.zip
 
       - name: Package for macOS
         if: matrix.target == 'x86_64-apple-darwin'
         run: |
-          zip --junk-paths rc-${{ matrix.target }} target/${{ matrix.target }}/release/rc
+          zip --junk-paths rc-${{ matrix.target }} target/${{ matrix.target }}
 
       - uses: actions/upload-artifact@v2
         with:
